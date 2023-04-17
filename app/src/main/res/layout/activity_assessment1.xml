@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/assessment1"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="235dp"
+        android:layout_marginEnd="114dp"
+        android:text="Berapa Umur Anda Saat Ini?"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/assessment1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="25dp"
+        android:maxLines="1"
+        android:layout_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/assessment1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="138dp"
+        android:textColor="#94A8FE"
+        android:textStyle="bold"
+        android:text="tahun" />
+
+    <Button
+        android:id="@+id/lanjutbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="#94A8FE"
+        android:text="Lanjutkan" />
+
+</RelativeLayout>
