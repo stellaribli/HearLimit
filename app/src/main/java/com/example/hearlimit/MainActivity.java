@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import androidx.appcompat.app.AlertDialog;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     int score = 0;
 
     private class HeadphoneReceiver extends BroadcastReceiver {
-        private long headphonesPluggedInTime;
+        private long headphonesPluggedInTime = 0;
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -38,10 +40,9 @@ public class MainActivity extends AppCompatActivity {
 //                    showNotification("Headphone Status: Plugged In");
                 } else {
                     // Headphones are unplugged
-                    long duration = System.currentTimeMillis() - headphonesPluggedInTime; // Calculate the duration
+                    long duration = 0;
+                    duration = System.currentTimeMillis() - headphonesPluggedInTime; // Calculate the duration
                     headphoneStatusTextView.setText("Headphone Status: Not Plugged In\nHeadphone Plugged In Duration: " + duration/1000 + " seconds");
-
-
                 }
             }
         }
@@ -95,6 +96,33 @@ public class MainActivity extends AppCompatActivity {
 
         // Convert the volume level to decibels
         float decibels = 20 * (float) Math.log10(volumeLevel);
+
+        // Check if the current decibel level is greater than 20 and the headphones have been plugged in for more than 20 seconds
+        if (decibels > 20 && System.currentTimeMillis() - headphoneReceiver.headphonesPluggedInTime > 20000) {
+            // Perform the desired actions here
+            // For example, show a dialog or send a notification
+            // You can use the runOnUiThread() method to update the UI from a background thread
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // Show a dialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("You have exceeded the safe listening limit!");
+                    builder.setPositiveButton("OK", null);
+                    builder.show();
+
+                    // Or send a notification
+                    // NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
+                    //     .setSmallIcon(R.drawable.notification_icon)
+                    //     .setContentTitle("HearLimit")
+                    //     .setContentText("You have exceeded the safe listening limit!")
+                    //     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    //     .setAutoCancel(true);
+                    // NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
+                    // notificationManager.notify(notificationId, notificationBuilder.build());
+                }
+            });
+        }
 
         // Update the UI to display the current decibel level
         runOnUiThread(new Runnable() {
