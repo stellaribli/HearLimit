@@ -1,10 +1,16 @@
 package com.example.hearlimit;
+
+import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +22,9 @@ import java.util.concurrent.TimeUnit;
 import androidx.appcompat.app.AlertDialog;
 
 
+
 public class MainActivity extends AppCompatActivity {
+    private static final String CHANNEL_ID = "my_channel";
 
     private TextView headphoneStatusTextView;
     private Button checkHeadphoneButton;
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class HeadphoneReceiver extends BroadcastReceiver {
         private long headphonesPluggedInTime = 0;
+
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -38,15 +47,23 @@ public class MainActivity extends AppCompatActivity {
                     headphoneStatusTextView.setText("Headphone Status: Plugged In");
                     headphonesPluggedInTime = System.currentTimeMillis();
 //                    showNotification("Headphone Status: Plugged In");
+
+//                if (duration != 1682602077){
+//
+//                }
                 } else {
                     // Headphones are unplugged
-                    long duration = 0;
-                    duration = System.currentTimeMillis() - headphonesPluggedInTime; // Calculate the duration
-                    headphoneStatusTextView.setText("Headphone Status: Not Plugged In\nHeadphone Plugged In Duration: " + duration/1000 + " seconds");
+//                    long duration = 0;
+                    long duration = System.currentTimeMillis() - headphonesPluggedInTime; // Calculate the duration
+                    if (duration != System.currentTimeMillis()) {
+                        headphoneStatusTextView.setText("Headphone Status: Not Plugged In\nHeadphone Plugged In Duration: " + duration / 1000 + " seconds");
+                    }
+
                 }
             }
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         lanjutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,MulaiAssessment.class);
+                Intent intent = new Intent(MainActivity.this, MulaiAssessment.class);
                 startActivity(intent);
             }
         });
@@ -90,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 0, 1, TimeUnit.SECONDS);
     }
+
     private void updateDecibelLevel() {
         // Get the current volume level for the music stream
         int volumeLevel = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -98,28 +116,19 @@ public class MainActivity extends AppCompatActivity {
         float decibels = 20 * (float) Math.log10(volumeLevel);
 
         // Check if the current decibel level is greater than 20 and the headphones have been plugged in for more than 20 seconds
-        if (decibels > 20 && System.currentTimeMillis() - headphoneReceiver.headphonesPluggedInTime > 20000) {
+        if (decibels > 20 && System.currentTimeMillis() - headphoneReceiver.headphonesPluggedInTime > 15000) {
             // Perform the desired actions here
             // For example, show a dialog or send a notification
             // You can use the runOnUiThread() method to update the UI from a background thread
             runOnUiThread(new Runnable() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void run() {
                     // Show a dialog
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("You have exceeded the safe listening limit!");
+                    builder.setMessage("You have exceeded the safe headphone limit, please turn down the volume");
                     builder.setPositiveButton("OK", null);
                     builder.show();
-
-                    // Or send a notification
-                    // NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-                    //     .setSmallIcon(R.drawable.notification_icon)
-                    //     .setContentTitle("HearLimit")
-                    //     .setContentText("You have exceeded the safe listening limit!")
-                    //     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    //     .setAutoCancel(true);
-                    // NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
-                    // notificationManager.notify(notificationId, notificationBuilder.build());
                 }
             });
         }
