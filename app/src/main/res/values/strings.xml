@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HearLimit</string>
+    <string name="snooze">Snooze 15 Menit</string>
+    <string name="ok">OK</string>
 </resources>
