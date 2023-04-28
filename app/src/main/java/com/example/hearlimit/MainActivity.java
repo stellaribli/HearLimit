@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
@@ -20,7 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import androidx.appcompat.app.AlertDialog;
-
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private AudioManager audioManager;
     private HeadphoneReceiver headphoneReceiver;
     private TextView decibelTextView;
-    Button lanjutbutton;
+    Button assessbutton;
     int score = 0;
 
     private class HeadphoneReceiver extends BroadcastReceiver {
-        private long headphonesPluggedInTime = 0;
+        public long headphonesPluggedInTime = 0;
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -44,19 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 int state = intent.getIntExtra("state", -1);
                 if (state == 1) {
                     // Headphones are plugged in
-                    headphoneStatusTextView.setText("Headphone Status: Plugged In");
+                    headphoneStatusTextView.setText("Plugged In");
                     headphonesPluggedInTime = System.currentTimeMillis();
-//                    showNotification("Headphone Status: Plugged In");
-
-//                if (duration != 1682602077){
-//
-//                }
                 } else {
                     // Headphones are unplugged
 //                    long duration = 0;
                     long duration = System.currentTimeMillis() - headphonesPluggedInTime; // Calculate the duration
                     if (duration != System.currentTimeMillis()) {
-                        headphoneStatusTextView.setText("Headphone Status: Not Plugged In\nHeadphone Plugged In Duration: " + duration / 1000 + " seconds");
+                        headphoneStatusTextView.setText("Not Plugged In\n Previous Duration: " + duration / 1000 + " seconds");
                     }
 
                 }
@@ -71,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the UI elements
         headphoneStatusTextView = (TextView) findViewById(R.id.headphone_status_textview);
-        checkHeadphoneButton = (Button) findViewById(R.id.check_headphone_button);
 
         // Get the AudioManager service
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -81,17 +75,16 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(headphoneReceiver, filter);
 
-        // Check the headphone status when the button is clicked
-        checkHeadphoneButton.setOnClickListener(v -> checkHeadphoneStatus());
-
-        lanjutbutton = findViewById(R.id.lanjutbutton);
-        lanjutbutton.setOnClickListener(new View.OnClickListener() {
+        // Open Assessment Page
+        assessbutton = findViewById(R.id.assessment_button);
+        assessbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MulaiAssessment.class);
                 startActivity(intent);
             }
         });
+
         // Get the UI element
         decibelTextView = (TextView) findViewById(R.id.decibel_textview);
 
@@ -104,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 updateDecibelLevel();
+
+
             }
         }, 0, 1, TimeUnit.SECONDS);
     }
@@ -120,15 +115,31 @@ public class MainActivity extends AppCompatActivity {
             // Perform the desired actions here
             // For example, show a dialog or send a notification
             // You can use the runOnUiThread() method to update the UI from a background thread
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel("channel_id", "Channel Name", NotificationManager.IMPORTANCE_HIGH);
+                channel.setDescription("Channel Description");
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+            }
             runOnUiThread(new Runnable() {
-                @SuppressLint("MissingPermission")
                 @Override
                 public void run() {
-                    // Show a dialog
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("You have exceeded the safe headphone limit, please turn down the volume");
-                    builder.setPositiveButton("OK", null);
-                    builder.show();
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "my_channel")
+                            .setSmallIcon(R.drawable.hearlimitlogo)
+                            .setContentTitle("Headphone volume warning")
+                            .setContentText("You have exceeded the safe headphone limit, please turn down the volume/stop using your headphone")
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setAutoCancel(true);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
+                    int notificationId = 1;
+                    notificationManager.notify(notificationId, builder.build());
+
+//                    // Show a dialog
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                    builder.setMessage("You have exceeded the safe headphone limit, please turn down the volume/stop using your headphone");
+//                    builder.setPositiveButton("OK", null);
+//                    builder.show();
                 }
             });
         }
