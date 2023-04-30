@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "my_channel";
     private static final String EXTRA_SNOOZE_DURATION = "com.example.hearlimit.EXTRA_SNOOZE_DURATION";
     private static final String ACTION_OK = "com.example.hearlimit.ACTION_OK";
-    private static final String TAG = "YourNotification";
+
     int notificationId = 1;
     private TextView headphoneStatusTextView;
     private AudioManager audioManager;
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String ACTION_SNOOZE = "com.example.hearlimit.ACTION_SNOOZE";
     private static final String EXTRA_NOTIFICATION_ID = "com.example.hearlimit.EXTRA_NOTIFICATION_ID";
-
 
     private class HeadphoneReceiver extends BroadcastReceiver {
         public long headphonesPluggedInTime = 0;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             if (action.equals(ACTION_SNOOZE)) {
                 // Handle Snooze button click
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-                notificationManager.cancel(TAG,notificationId);
+                notificationManager.cancelAll();
 
                 // Schedule the next notification in 15 minutes
                 Handler handler = new Handler();
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (action.equals(ACTION_OK)) {
                 // Handle Ok button click
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-                notificationManager.cancel(TAG,notificationId);
+                notificationManager.cancelAll();
             }
 
             if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
@@ -132,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 .setOnlyAlertOnce(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
-        notificationManager.notify(TAG, notificationId, builder.build());
-
+        notificationManager.notify(notificationId, builder.build());
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,12 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the headphone receiver
         headphoneReceiver = new HeadphoneReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_HEADSET_PLUG);
-        filter.addAction(ACTION_SNOOZE);
-        filter.addAction(ACTION_OK);
+        IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(headphoneReceiver, filter);
-
 
         // Open Assessment Page
         assessbutton = findViewById(R.id.assessment_button);
@@ -197,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
         long currentTime = System.currentTimeMillis();
 
         Switch mySwitch = findViewById(R.id.switchNotification);
-
         if (state == 1 && mySwitch.isChecked() && decibels > 20 && currentTime - headphoneReceiver.headphonesPluggedInTime > 15000 && headphoneReceiver.headphonesPluggedInTime != 0) {
             sendNotificationLimit();
 //
@@ -217,12 +210,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (state == 1){
-                    decibelTextView.setText(decibels + " dB");
-                }
-                else{
-                    decibelTextView.setText("Not Plugged In");
-                }
+                decibelTextView.setText("Current Decibel Level: " + decibels + " dB");
             }
         });
     }
@@ -230,8 +218,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        // Unregister the BroadcastReceiver
-        unregisterReceiver(headphoneReceiver);
     }
 }

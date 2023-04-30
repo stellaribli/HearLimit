@@ -2,9 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.HearLimit" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#6E8AFF</item>
-        <item name="colorPrimaryDark">#5474FF</item>
-        <item name="colorPrimaryVariant">#5474FF</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
