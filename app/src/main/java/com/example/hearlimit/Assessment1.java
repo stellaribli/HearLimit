@@ -13,6 +13,7 @@ public class Assessment1 extends AppCompatActivity {
     EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String getNumber = "100";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment1);
         button = findViewById(R.id.lanjutbutton);
@@ -21,6 +22,8 @@ public class Assessment1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String input = editText.getText().toString();
+//                String getNumber = "100";
+//                int score = Integer.parseInt(getNumber);
                 if (input.isEmpty()) {
                     editText.setError("Masukkan nilai");
                     editText.requestFocus();
@@ -29,9 +32,19 @@ public class Assessment1 extends AppCompatActivity {
                     if (value < 2 || value > 100) {
                         editText.setError("Masukkan nilai antara 2 dan 100");
                         editText.requestFocus();
-                    } else {
-                    Intent intent = new Intent(Assessment1.this, HeadphoneActivity.class);
-                    startActivity(intent);}
+                    }
+                    else {
+//                        if (value < 50 || value > 30) {
+//                            score = score - 10;
+//                            getNumber = Integer.toString(score);
+//                        }
+//                        if (value >50) {
+//                            score = score - 20;
+//                            getNumber = Integer.toString(score);
+//                        }
+                        Intent intent5 = new Intent(Assessment1.this, HeadphoneActivity.class);
+//                        intent5.putExtra("number1", getNumber);
+                        startActivity(intent5);}
                 }
             }
         });

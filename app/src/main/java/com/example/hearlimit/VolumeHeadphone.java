@@ -47,9 +47,13 @@ public class VolumeHeadphone extends AppCompatActivity {
 
                 break;
             case R.id.kurangdari1:
+                String getNumber = "20";
+                int score = Integer.parseInt(getNumber);
+                score = score - 10;
+                getNumber = Integer.toString(score);
                 Intent intent2 = new Intent(this, hasil.class);
+                intent2.putExtra("number", getNumber);
                 startActivity(intent2);
-
                 break;
         }
     }

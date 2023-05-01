@@ -59,7 +59,11 @@ public class Question extends AppCompatActivity {
 
                 break;
             case R.id.volume_0_20_button:
+                String getNumber = "20";
+                int score = Integer.parseInt(getNumber);
+                score = score - 10;
                 Intent intent2 = new Intent(this, VolumeHeadphone.class);
+                intent2.putExtra("number", getNumber);
                 startActivity(intent2);
 
                 break;
