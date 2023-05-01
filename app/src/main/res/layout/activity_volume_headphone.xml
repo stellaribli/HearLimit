@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/Button"
+        android:id="@+id/lebihdari10"
         android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/assessment1"
@@ -30,68 +30,64 @@
         android:layout_marginTop="43dp"
         android:layout_marginEnd="49dp"
         android:backgroundTint="#93A6FE"
-        android:text="lebih dari 10 jam" />
+        android:text="lebih dari 10 jam"
+        android:onClick="onVolumeButtonClick"/>
 
     <Button
-        android:id="@+id/Button1"
+        android:id="@+id/antara510"
         android:layout_width="311dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Button"
+        android:layout_below="@+id/lebihdari10"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="49dp"
         android:backgroundTint="#93A6FE"
-        android:text="5 - 10 jam" />
+        android:text="5 - 10 jam"
+        android:onClick="onVolumeButtonClick"/>
 
     <Button
-        android:id="@+id/Button2"
+        android:id="@+id/antara35"
         android:layout_width="311dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Button1"
+        android:layout_below="@+id/antara510"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="49dp"
         android:backgroundTint="#93A6FE"
-        android:text="3 - 5 jam" />
+        android:text="3 - 5 jam"
+        android:onClick="onVolumeButtonClick"/>
 
     <Button
-        android:id="@+id/Button3"
+        android:id="@+id/antara13"
         android:layout_width="311dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Button2"
+        android:layout_below="@+id/antara35"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="49dp"
         android:backgroundTint="#93A6FE"
-        android:text="1 - 3 jam" />
+        android:text="1 - 3 jam"
+        android:onClick="onVolumeButtonClick"/>
 
     <Button
-        android:id="@+id/Button4"
+        android:id="@+id/kurangdari1"
         android:layout_width="311dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Button3"
+        android:layout_below="@+id/antara13"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="49dp"
         android:backgroundTint="#93A6FE"
-        android:text="kurang dari 1 jam" />
+        android:text="kurang dari 1 jam"
+        android:onClick="onVolumeButtonClick"/>
 
-    <Button
-        android:id="@+id/lanjutbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="17dp"
-        android:text="Lanjutkan" />
 
 </RelativeLayout>

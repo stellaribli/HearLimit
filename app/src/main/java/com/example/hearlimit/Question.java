@@ -54,12 +54,12 @@ public class Question extends AppCompatActivity {
                 // Lakukan sesuatu untuk pilihan 40-60%
                 break;
             case R.id.volume_20_40_button:
-                Intent intent1 = new Intent(this, centangGangguan.class);
+                Intent intent1 = new Intent(this, VolumeHeadphone.class);
                 startActivity(intent1);
 
                 break;
             case R.id.volume_0_20_button:
-                Intent intent2 = new Intent(this, centangGangguan.class);
+                Intent intent2 = new Intent(this, VolumeHeadphone.class);
                 startActivity(intent2);
 
                 break;
