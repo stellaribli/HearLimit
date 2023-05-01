@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HearLimit"
         tools:targetApi="31">
         <activity
+            android:name=".centangGangguan"
+            android:exported="false" />
+        <activity
             android:name=".Question"
             android:exported="false" />
         <activity

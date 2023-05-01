@@ -17,7 +17,7 @@ public class HeadphoneActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HeadphoneActivity.this,VolumeHeadphone.class);
+                Intent intent = new Intent(HeadphoneActivity.this,Question.class);
                 startActivity(intent);
             }
         });
