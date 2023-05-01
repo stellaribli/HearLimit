@@ -7,21 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".Notification">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="364dp" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="248dp"
         android:layout_height="48dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="192dp"
         android:text="Exceed Headphone Safe Limit, reduce your volume / plug out your headphone"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="81dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="340dp"
+        android:text="OK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

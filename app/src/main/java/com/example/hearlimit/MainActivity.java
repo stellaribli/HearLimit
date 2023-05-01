@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         Intent snoozeIntent = new Intent(this, HeadphoneReceiver.class);
         snoozeIntent.setAction(ACTION_SNOOZE);
         snoozeIntent.putExtra(EXTRA_NOTIFICATION_ID, 1);
-        snoozeIntent.putExtra(EXTRA_SNOOZE_DURATION, 1 * 60 * 1000);
+        snoozeIntent.putExtra(EXTRA_SNOOZE_DURATION, 15 * 60 * 1000); // snooze selama 15 menit
         PendingIntent snoozePendingIntent =
                 PendingIntent.getBroadcast(this, 3, snoozeIntent, 0);
 
