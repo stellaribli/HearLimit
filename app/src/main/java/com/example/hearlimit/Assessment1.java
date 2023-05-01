@@ -34,16 +34,7 @@ public class Assessment1 extends AppCompatActivity {
                         editText.requestFocus();
                     }
                     else {
-//                        if (value < 50 || value > 30) {
-//                            score = score - 10;
-//                            getNumber = Integer.toString(score);
-//                        }
-//                        if (value >50) {
-//                            score = score - 20;
-//                            getNumber = Integer.toString(score);
-//                        }
                         Intent intent5 = new Intent(Assessment1.this, HeadphoneActivity.class);
-//                        intent5.putExtra("number1", getNumber);
                         startActivity(intent5);}
                 }
             }

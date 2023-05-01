@@ -41,7 +41,8 @@ public class Question extends AppCompatActivity {
     public void onVolumeButtonClick(View view) {
         // Mendapatkan ID dari button yang ditekan
         int buttonId = view.getId();
-
+        String getNumber = "20";
+        int score = Integer.parseInt(getNumber);
         // Menggunakan switch case untuk memproses input dari pengguna berdasarkan ID button
         switch (buttonId) {
             case R.id.volume_80_100_button:
@@ -54,18 +55,15 @@ public class Question extends AppCompatActivity {
                 // Lakukan sesuatu untuk pilihan 40-60%
                 break;
             case R.id.volume_20_40_button:
-                Intent intent1 = new Intent(this, VolumeHeadphone.class);
-                startActivity(intent1);
 
+                Intent intent2 = new Intent(this, VolumeHeadphone.class);
+
+                startActivity(intent2);
                 break;
             case R.id.volume_0_20_button:
-                String getNumber = "20";
-                int score = Integer.parseInt(getNumber);
-                score = score - 10;
-                Intent intent2 = new Intent(this, VolumeHeadphone.class);
-                intent2.putExtra("number", getNumber);
-                startActivity(intent2);
 
+                Intent intent3 = new Intent(this, VolumeHeadphone.class);
+                startActivity(intent3);
                 break;
         }
     }

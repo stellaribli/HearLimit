@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Question">
 
     <TextView
@@ -13,9 +14,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="86dp"
         android:text="Berapa volume suara yang Anda pilih saat menggunakan headphone?"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -24,35 +22,51 @@
 
     <Button
         android:id="@+id/volume_80_100_button"
-        android:layout_width="match_parent"
+        android:backgroundTint="#93A6FE"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:text="80-100%"
+
         android:onClick="onVolumeButtonClick" />
 
     <Button
         android:id="@+id/volume_60_80_button"
-        android:layout_width="match_parent"
+        android:backgroundTint="#93A6FE"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:text="60-80%"
         android:onClick="onVolumeButtonClick" />
 
     <Button
         android:id="@+id/volume_40_60_button"
-        android:layout_width="match_parent"
+        android:backgroundTint="#93A6FE"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:text="40-60%"
         android:onClick="onVolumeButtonClick" />
 
     <Button
         android:id="@+id/volume_20_40_button"
-        android:layout_width="match_parent"
+        android:backgroundTint="#93A6FE"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:text="20-40%"
         android:onClick="onVolumeButtonClick" />
 
     <Button
         android:id="@+id/volume_0_20_button"
-        android:layout_width="match_parent"
+        android:backgroundTint="#93A6FE"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:text="0-20%"
         android:onClick="onVolumeButtonClick" />
