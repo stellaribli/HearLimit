@@ -31,8 +31,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.android.material.card.MaterialCardView;
+
 
 public class MainActivity extends AppCompatActivity {
+
     private static final String CHANNEL_ID = "my_channel";
     private static final String EXTRA_SNOOZE_DURATION = "com.example.hearlimit.EXTRA_SNOOZE_DURATION";
     private static final String ACTION_OK = "com.example.hearlimit.ACTION_OK";
