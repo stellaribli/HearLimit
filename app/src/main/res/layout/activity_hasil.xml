@@ -75,13 +75,13 @@ android:layout_height="match_parent">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        app:cardCornerRadius="12dp"
         app:cardBackgroundColor="#94A8FE"
+        app:cardCornerRadius="12dp"
         app:cardElevation="6dp">
 
         <RelativeLayout
             android:layout_width="345dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:padding="16dp">
 
             <TextView
@@ -90,12 +90,12 @@ android:layout_height="match_parent">
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginEnd="36dp"
                 android:text="jam"
                 android:textAlignment="center"
                 android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -125,20 +125,22 @@ android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="345dp"
             android:layout_height="50dp"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/teksVolumeHasil"
-                android:layout_width="wrap_content"
+                android:layout_width="309dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="25dp"
                 android:layout_marginBottom="20dp"
                 android:text="%"
                 android:textAlignment="center"
                 android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

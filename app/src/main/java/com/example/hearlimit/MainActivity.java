@@ -106,18 +106,18 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void sendNotificationLimit(){
-        Intent snoozeIntent = new Intent(this, HeadphoneReceiver.class);
-        snoozeIntent.setAction(ACTION_SNOOZE);
-        snoozeIntent.putExtra(EXTRA_NOTIFICATION_ID, 1);
-        snoozeIntent.putExtra(EXTRA_SNOOZE_DURATION, 1 * 60 * 1000); // snooze selama 15 menit
-        PendingIntent snoozePendingIntent =
-                PendingIntent.getBroadcast(this, 3, snoozeIntent, 0);
-
-        // Intent for the Ok action
-        Intent okIntent = new Intent(this, HeadphoneReceiver.class);
-        okIntent.setAction(ACTION_OK);
-        okIntent.putExtra(EXTRA_NOTIFICATION_ID, 1);
-        PendingIntent okPendingIntent = PendingIntent.getBroadcast(this, 4, okIntent, 0);
+//        Intent snoozeIntent = new Intent(this, HeadphoneReceiver.class);
+//        snoozeIntent.setAction(ACTION_SNOOZE);
+//        snoozeIntent.putExtra(EXTRA_NOTIFICATION_ID, 1);
+//        snoozeIntent.putExtra(EXTRA_SNOOZE_DURATION, 1 * 60 * 1000); // snooze selama 15 menit
+//        PendingIntent snoozePendingIntent =
+//                PendingIntent.getBroadcast(this, 3, snoozeIntent, 0);
+//
+//        // Intent for the Ok action
+//        Intent okIntent = new Intent(this, HeadphoneReceiver.class);
+//        okIntent.setAction(ACTION_OK);
+//        okIntent.putExtra(EXTRA_NOTIFICATION_ID, 1);
+//        PendingIntent okPendingIntent = PendingIntent.getBroadcast(this, 4, okIntent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "my_channel")
                 .setSmallIcon(R.drawable.hearlimitlogo)
@@ -126,10 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText("You have exceeded the safe headphone limit, please turn down the volume/stop using your headphone"))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .addAction(R.drawable.hearlimitlogo, getString(R.string.snooze),
-                        snoozePendingIntent)
-                .addAction(R.drawable.hearlimitlogo, getString(R.string.ok),
-                        okPendingIntent)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true);
 
